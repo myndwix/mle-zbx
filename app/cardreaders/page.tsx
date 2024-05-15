@@ -23,7 +23,7 @@ interface User{
     value: number
 }
 
-export default function CardReaders() {
+const CardReaders = () => {
     const [readerDescription, setReaderDescription] = useState<User[]>([]);
     const [isLoading, setLoading] = useState<boolean>(true);
     const [isError, setError] = useState<any>('');
@@ -94,3 +94,7 @@ else
     </>
   );
 }
+
+
+// export const dynamic = 'force-dynamic';
+export default CardReaders;

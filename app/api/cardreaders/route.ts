@@ -1,7 +1,7 @@
 import {NextRequest, NextResponse } from 'next/server';
 import mysql from 'mysql2/promise' 
-const https = require('https');
-
+import { headers } from 'next/headers';
+export const dynamic = 'force-dynamic' 
 export async function GET(req: NextRequest, res: NextResponse) {
 
     try {
