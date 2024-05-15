@@ -1,13 +1,6 @@
 import {NextRequest, NextResponse } from 'next/server';
-import {NextPage } from 'next';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import {apiCardReaders} from '@/app/_data/data';
 import mysql from 'mysql2/promise' 
 const https = require('https');
-
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false
-});
 
 export async function GET(req: NextRequest, res: NextResponse) {
 
