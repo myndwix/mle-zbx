@@ -8,9 +8,9 @@ interface Props {
 
 function ApOffline({name}: Props){
     return(
-    <div className='flex flex-col items-center mx-1 mt-5 bg-gray-800 p-3 rounded-md w-72'>
-        <Image src={RuckusApOffline} priority alt='Card Reader Offline' className='w-16'/>
-        <p className='text-white font-medium text-md mt-2'>{name}</p>
+    <div className='flex flex-col items-center mx-1 mt-2 bg-gray-800 p-3 rounded-md w-32 h-28 justify-between'>
+        <Image src={RuckusApOffline} priority alt='Card Reader Offline' className='w-12'/>
+        <p className='text-white font-medium text-xs mt-2'>{name}</p>
     </div>
     )
 }

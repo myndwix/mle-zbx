@@ -31,7 +31,7 @@ const AccessPoints = () => {
     const [isError, setError] = useState<any>('');
     const getData = async () => {
         try{
-            const chunkSize = 100;
+            const chunkSize = 80;
             const chunkedData= [];
             const {data} = await axios.get<User[]>('/api/accesspoints')
             for (let i = 0; i < data.length; i += chunkSize) {
@@ -60,13 +60,13 @@ const AccessPoints = () => {
 if(isLoading)
 return(
 <div className='flex px-5 bg-black h-screen'>
-    <div className="flex w-full flex-wrap h-max gap-x-2">
-        {Array.from({length: 84}, (v, i) => 
+    <div className="flex w-full flex-wrap h-max gap-x-3">
+        {Array.from({length: 36}, (v, i) => 
           <div key={i} className='flex flex-col items-center mx-1 mt-5 bg-gray-800 p-3 rounded-md'>
           <div className='relative'>
-            <Skeleton className="w-20 h-[50px] rounded bg-gray-500" />
+            <Skeleton className="w-44 h-[70px] rounded bg-gray-500" />
           </div>
-          <Skeleton className="w-24 h-[16px] rounded-lg bg-gray-500 mt-2" />
+          <Skeleton className="w-60 h-[20px] rounded-lg bg-gray-500 mt-2" />
       </div>
         )}
     </div>
@@ -87,7 +87,7 @@ return (
 else
   return (
     <>
-        <div className="embla bg-black h-screen pl-2 pt-3" ref={emblaRef}>
+        <div className="embla bg-black h-screen pl-3" ref={emblaRef}>
       <div className="embla__container">
         {apDescription.map((page:any, pageIndex:number) => (
           <div className="embla__slide flex flex-wrap items-center h-full" key={pageIndex}>
