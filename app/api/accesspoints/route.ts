@@ -27,7 +27,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
           JOIN triggers d ON c.triggerid=d.triggerid
           JOIN hosts_groups e on a.hostid=e.hostid
           JOIN interface f on a.hostid=f.hostid
-          WHERE left(b.key_, 21)='ruckusSZAPConnStatuss' and b.itemid<>124281 -- and f.type=1 and e.groupid=25 and a.status=0 -- and d.triggerid in
+          WHERE left(b.key_, 21)='ruckusSZAPConnStatuss' and b.itemid<>124281 and left(b.name,23)='AP Connection Status AP' -- and f.type=1 and e.groupid=25 and a.status=0 -- and d.triggerid in
           ORDER BY a.hostid;
           `
         );
