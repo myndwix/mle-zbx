@@ -32,12 +32,12 @@ const AccessPoints = () => {
     const getData = async () => {
         try{
             const chunkSize = 100;
-            const chunkedData= [];
+            // const chunkedData= [];
             const {data} = await axios.get<User[]>('/api/accesspoints')
-            for (let i = 0; i < data.length; i += chunkSize) {
-                chunkedData.push(data.slice(i, i + chunkSize));
-            }
-            setApDescription(chunkedData)
+            // for (let i = 0; i < data.length; i += chunkSize) {
+            //     chunkedData.push(data.slice(i, i + chunkSize));
+            // }
+            setApDescription(data)
             await delay(2000);
             setLoading(false);
             setPageCount(Math.ceil(data.length/10));
@@ -59,15 +59,27 @@ const AccessPoints = () => {
 
 if(isLoading)
 return(
-<div className='flex px-5 bg-black h-screen'>
-    <div className="flex w-full flex-wrap h-max gap-x-2">
-        {Array.from({length: 28}, (v, i) => 
-          <div key={i} className='flex flex-col items-center mx-1 mt-5 bg-gray-800 p-3 rounded-md'>
-          <div className='relative'>
-            <Skeleton className="w-44 h-24 rounded bg-gray-500" />
+<div className='flex flex-col px-2 bg-black h-screen'>
+  <h1 className='text-white font-semibold text-lg ml-2 mt-3'>Zone Director</h1>
+    <div className="flex w-full flex-wrap h-max gap-x-1">
+        {Array.from({length: 38}, (v, i) => 
+          <div key={i} className='flex flex-col items-center mx-1 mt-3 bg-gray-800 p-3 rounded-md'>
+            <div className='relative'>
+              <Skeleton className="w-20 h-16 rounded bg-gray-500" />
+            </div>
+            <Skeleton className="w-32 h-[12px] rounded-lg bg-gray-500 mt-2" />
           </div>
-          <Skeleton className="w-32 h-[16px] rounded-lg bg-gray-500 mt-2" />
-      </div>
+        )}
+    </div>
+  <h1 className='text-white font-semibold text-lg ml-2 mt-3'>Smart Zone</h1>
+  <div className="flex w-full flex-wrap h-max gap-x-1">
+        {Array.from({length: 18}, (v, i) => 
+          <div key={i} className='flex flex-col items-center mx-1 mt-3 bg-gray-800 p-3 rounded-md'>
+            <div className='relative'>
+              <Skeleton className="w-20 h-16 rounded bg-gray-500" />
+            </div>
+            <Skeleton className="w-32 h-[12px] rounded-lg bg-gray-500 mt-2" />
+          </div>
         )}
     </div>
 </div>
@@ -87,15 +99,22 @@ return (
 else
   return (
     <>
-        <div className="embla bg-black h-screen pl-2 pt-3" ref={emblaRef}>
-      <div className="embla__container">
-        {apDescription.map((page:any, pageIndex:number) => (
-          <div className="embla__slide flex flex-wrap items-center h-full" key={pageIndex}>
-            {page.map((number:any, numberIndex:number) => (
-              number.value===0 ? <ApOnline key={number.triggerid} name={number.itemname}/> : <ApOffline key={number.triggerid} name={number.itemname}/>
-            ))}
-          </div>
-        ))}
+        <div className="bg-black pl-2 pt-3 h-full">
+      <div className="flex flex-col overflow-y-auto">
+        <h1 className='text-white text-lg ml-2 font-semibold'>Zone Director</h1>
+        <div className='flex flex-wrap bg-black'>
+          {apDescription.filter((item:{hostid:number}) => item.hostid===10588).map((ap:any, pageIndex:number) => (
+                ap.value===0 ? <ApOnline key={ap.triggerid} name={ap.itemname}/> : <ApOffline key={ap.triggerid} name={ap.itemname}/>
+              
+          ))}
+        </div>
+        <h1 className='text-white text-lg ml-2 font-semibold mt-5'>Smart Zone</h1>
+        <div className='flex flex-wrap bg-black'>
+          {apDescription.filter((item:{hostid:number}) => item.hostid===10886).map((ap:any, pageIndex:number) => (
+                ap.value===0 ? <ApOnline key={ap.triggerid} name={ap.itemname}/> : <ApOffline key={ap.triggerid} name={ap.itemname}/>
+              
+          ))}
+        </div>
       </div>
     </div>
     </>
